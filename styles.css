@@ -73,6 +73,7 @@ h1{
   border-radius: 10px;
   overflow: hidden;
 }
-.work, .about, .contact {
-  margin-top: 400px;
+section {
+  padding: 100px 0;
 }
+
