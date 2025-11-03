@@ -69,3 +69,7 @@ h1{
   h1{ font-size:1.6rem; }
   .video iframe{ height:160px;}
 }
+.tiktok-embed {
+  border-radius: 10px;
+  overflow: hidden;
+}
