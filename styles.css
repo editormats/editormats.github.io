@@ -22,6 +22,7 @@ body {
   line-height: 1.5;
 }
 
+/* LAYOUT */
 .container {
   max-width: 1400px;
   margin: 20px auto;
@@ -30,79 +31,35 @@ body {
 
 /* HERO */
 header.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
-
-  /* make navbar stick to the viewport */
-  position: sticky;
-  top: 0;
-  z-index: 60;
-
-  /* visible backdrop when pinned (adjust opacity/color to taste) */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   background: rgba(11, 11, 13, 0.92);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  /* keep the same vertical spacing inside header while sticky */
-  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  margin-bottom: 24px;
 }
 
-/* Make background reach full viewport on iOS and respect safe areas */
-html, body {
-  width: 100%;
-  min-height: 100%;
-  background: var(--bg);
+.hero-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  /* Changed from flex-start to center */
+  gap: 20px;
 }
 
-/* let content avoid notch/rounded corners on iOS */
-.container {
-  padding-left: calc(32px + env(safe-area-inset-left));
-  padding-right: calc(32px + env(safe-area-inset-right));
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* keep sticky header visible below the status bar on iOS */
-header.hero {
-  top: env(safe-area-inset-top);
-  padding-top: calc(12px + env(safe-area-inset-top));
-  padding-bottom: 12px;
-}
-
-/* smaller header / title on narrow screens (phones) */
-@media (max-width: 420px) {
-  header.hero {
-    gap: 8px;
-    padding-top: calc(8px + env(safe-area-inset-top));
-    padding-bottom: 8px;
-    margin-bottom: 12px;
-  }
-
-  h1 {
-    font-size: 1.6rem;
-    line-height: 1.1;
-  }
-
-  .nav {
-    gap: 6px;
-  }
-
-  .nav a {
-    font-size: 0.9rem;
-    padding: 4px 6px;
-  }
-
-  /* make cards stack and not feel oversized on tiny screens */
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .card {
-    max-width: 100%;
-  }
-}
-
+/* TYPOGRAPHY */
 h1 {
   font-size: 2.4rem;
   margin: 0;
@@ -116,15 +73,25 @@ h1, h2 {
 .tag {
   color: var(--muted);
   margin-top: 6px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 /* NAVIGATION */
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding-top: 6px;  /* Added to match visual height of title */
+}
+
 .nav a {
   color: var(--muted);
-  margin-left: 18px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   position: relative;
   padding: 0 5px;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -165,7 +132,7 @@ h1, h2 {
   content: '';
   position: absolute;
   left: 0; right: 0;
-  top: -20px; height: 1px;
+  top: -24px; height: 1px;
   background: linear-gradient(to right, transparent, #333, transparent);
 }
 
@@ -242,40 +209,102 @@ h1, h2 {
 
 /* ====== RESPONSIVE ====== */
 
-/* ↓ 805px — main responsive breakpoint */
-@media (max-width: 805px) {
-
-  /* Header: stack cleanly, no weird centering */
-  header.hero {
-    flex-direction: column;
-    align-items: flex-start;     /* stays top-left */
-    gap: 8px;
-    margin-bottom: 24px;
-  }
-
-  /* Title stays same size — stop shrinking */
-  h1 {
-    font-size: 2.4rem;
-  }
+.mobile-tag {
+  display: none;
+}
 
   /* Vertical navbar with tight spacing */
-  .nav {
-    display: flex;
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav a {
+  color: var(--muted);
+  margin-left: 18px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  position: relative;
+  padding: 0 5px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+@media (max-width: 805px) {
+  .hero-wrap {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .tag {
     flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
-    margin-top: 6px;
   }
 
-  .nav a {
-    margin-left: 0;
-    padding: 4px 0;
-    font-size: 0.95rem;
+  .tag .separator {
+    display: none;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
   }
 
   .video iframe {
     height: 160px;
   }
 }
+/* Update hero-wrap layout */
+.hero-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 32px;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1 px;
+}
+
+/* Hide mobile tag by default */
+.mobile-tag {
+  display: none;
+}
+
+/* Update responsive styles */
+@media (max-width: 805px) {
+  .desktop-tag {
+    display: none;
+  }
+  
+  .mobile-tag {
+    display: block;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+}
+
+  .video iframe {
+    height: 160px;
+  }
+
 
 /* ↓ 600px */
 @media (max-width: 600px) {
