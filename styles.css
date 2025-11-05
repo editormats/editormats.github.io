@@ -35,6 +35,18 @@ header.hero {
   align-items: center;
   gap: 20px;
   margin-bottom: 20px;
+
+  /* make navbar stick to the viewport */
+  position: sticky;
+  top: 0;
+  z-index: 60;
+
+  /* visible backdrop when pinned (adjust opacity/color to taste) */
+  background: rgba(11, 11, 13, 0.92);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  /* keep the same vertical spacing inside header while sticky */
+  padding: 12px 0;
 }
 
 h1 {
@@ -114,12 +126,13 @@ h1, h2 {
 /* CARD */
 .card {
   background: var(--panel);
-  padding: 14px;
+  padding: 15px;
   border-radius: var(--radius);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 350px;
   width: 100%;
+  height: 100%;
 }
 
 .card:hover {
@@ -142,7 +155,7 @@ h1, h2 {
 /* VIDEO */
 .video iframe {
   width: 100%;
-  height: 190px;
+  height: 739px;
   border-radius: 10px;
   display: block;
   background: #000;
