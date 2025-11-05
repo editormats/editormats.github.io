@@ -49,6 +49,60 @@ header.hero {
   padding: 12px 0;
 }
 
+/* Make background reach full viewport on iOS and respect safe areas */
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+/* let content avoid notch/rounded corners on iOS */
+.container {
+  padding-left: calc(32px + env(safe-area-inset-left));
+  padding-right: calc(32px + env(safe-area-inset-right));
+}
+
+/* keep sticky header visible below the status bar on iOS */
+header.hero {
+  top: env(safe-area-inset-top);
+  padding-top: calc(12px + env(safe-area-inset-top));
+  padding-bottom: 12px;
+}
+
+/* smaller header / title on narrow screens (phones) */
+@media (max-width: 420px) {
+  header.hero {
+    gap: 8px;
+    padding-top: calc(8px + env(safe-area-inset-top));
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    line-height: 1.1;
+  }
+
+  .nav {
+    gap: 6px;
+  }
+
+  .nav a {
+    font-size: 0.9rem;
+    padding: 4px 6px;
+  }
+
+  /* make cards stack and not feel oversized on tiny screens */
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
+
 h1 {
   font-size: 2.4rem;
   margin: 0;
