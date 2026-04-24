@@ -59,6 +59,7 @@ let mobileOpen = false;
 if (mobileToggle) {
     mobileToggle.addEventListener('click', () => {
         mobileOpen = !mobileOpen;
+        mobileToggle.classList.toggle('open', mobileOpen);
         if (mobileOpen) {
             navLinksEl.style.display = 'flex';
             navLinksEl.style.flexDirection = 'column';
@@ -81,6 +82,7 @@ if (mobileToggle) {
         link.addEventListener('click', () => {
             if (mobileOpen) {
                 mobileOpen = false;
+                mobileToggle.classList.remove('open');
                 navLinksEl.removeAttribute('style');
             }
         });
