@@ -325,9 +325,33 @@ a { color: inherit; }
     font-weight: 300;
     color: var(--muted-2);
     line-height: 1.55;
-    margin-bottom: 2.75rem;
+    margin-bottom: 1.1rem;
     opacity: 0;
     animation: fadeSlideUp 0.7s var(--ease) 0.8s forwards;
+}
+
+.hero-affiliation {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeSlideUp 0.7s var(--ease) 0.92s forwards;
+}
+.hero-affiliation::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 7px rgba(0,229,255,0.65);
+    flex-shrink: 0;
 }
 
 .hero-ctas {
