@@ -77,7 +77,7 @@ if (mobileToggle) {
 (function animateWordmark() {
     const wm = document.querySelector('.hero-wordmark');
     if (!wm) return;
-    const accent = 'editor', normal = 'mats';
+    const accent = 'Mats', normal = 'Koning';
     wm.innerHTML =
         [...accent].map((c, i) => `<span class="hc accent" style="--ci:${i}">${c}</span>`).join('') +
         [...normal].map((c, i) => `<span class="hc" style="--ci:${i + accent.length}">${c}</span>`).join('');
@@ -135,6 +135,17 @@ if (window.matchMedia('(pointer: fine)').matches) {
         ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
         requestAnimationFrame(loop);
     })();
+}
+
+/* ── Contact form → mailto ─────────────────────────── */
+function handleContactForm(e) {
+    e.preventDefault();
+    const name    = document.getElementById('contact-name').value;
+    const company = document.getElementById('contact-company').value;
+    const scope   = document.getElementById('contact-scope').value;
+    const subject = encodeURIComponent(`Project Enquiry — ${company || name}`);
+    const body    = encodeURIComponent(`Name: ${name}\nCompany: ${company || '—'}\n\nProject Scope:\n${scope}`);
+    window.location.href = `mailto:mats30koning@gmail.com?subject=${subject}&body=${body}`;
 }
 
 /* ── 3D tilt on work cards ─────────────────────────── */

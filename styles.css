@@ -1013,3 +1013,182 @@ footer .container {
     }
     .hero-embed, .work-featured, .work-card { overflow: hidden; }
 }
+
+/* ── Discipline Groups ───────────────────────────────── */
+.discipline-group {
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+}
+.discipline-group-b { margin-top: 4rem; }
+
+.discipline-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+}
+.discipline-letter {
+    font-family: var(--head);
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+/* ── Viral Metrics Box ───────────────────────────────── */
+.viral-metrics {
+    border: 1px solid rgba(0,229,255,0.15);
+    background: rgba(0,229,255,0.03);
+    padding: 1.25rem 1.75rem;
+    margin-bottom: 1.75rem;
+    position: relative;
+}
+.viral-metrics::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 2px;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(0,229,255,0.4);
+}
+.viral-metrics-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+.viral-metrics p {
+    color: var(--muted-2);
+    font-size: 0.85rem;
+    line-height: 1.65;
+}
+
+/* ── Email CTA ───────────────────────────────────────── */
+.email-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(0,229,255,0.25);
+    background: rgba(0,229,255,0.04);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+.email-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,229,255,0.06) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.email-cta:hover {
+    border-color: rgba(0,229,255,0.5);
+    background: rgba(0,229,255,0.06);
+    box-shadow: 0 0 40px rgba(0,229,255,0.08);
+}
+.email-cta:hover::before { opacity: 1; }
+.email-cta:hover .email-cta-arrow {
+    transform: translate(3px, -3px);
+    color: var(--accent);
+}
+.email-cta-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+.email-cta-address {
+    font-family: var(--head);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text);
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+.email-cta-arrow {
+    font-size: 1.2rem;
+    color: var(--muted);
+    transition: color 0.2s ease, transform 0.22s var(--ease);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+/* ── Contact Form ─────────────────────────────────────── */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    padding: 2rem;
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+.form-field label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.form-field input,
+.form-field textarea {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 0.88rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    resize: vertical;
+    line-height: 1.6;
+    appearance: none;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: var(--muted); }
+.form-field input:focus,
+.form-field textarea:focus {
+    border-color: rgba(0,229,255,0.35);
+    box-shadow: 0 0 0 3px rgba(0,229,255,0.05);
+}
+.form-submit {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    border: none;
+    font-family: var(--body);
+}
+
+@media (max-width: 600px) {
+    .email-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        padding: 1.25rem 1.5rem;
+    }
+    .email-cta-arrow { display: none; }
+    .email-cta-address { font-size: 0.9rem; }
+    .contact-form { padding: 1.5rem; }
+}
