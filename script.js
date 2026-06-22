@@ -148,17 +148,3 @@ function handleContactForm(e) {
     window.location.href = `mailto:mats30koning@gmail.com?subject=${subject}&body=${body}`;
 }
 
-/* ── 3D tilt on work cards ─────────────────────────── */
-document.querySelectorAll('.work-card, .work-featured').forEach(card => {
-    card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width  - 0.5;
-        const y = (e.clientY - r.top)  / r.height - 0.5;
-        card.style.transform  = `perspective(1100px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
-        card.style.transition = 'transform 0.08s ease, border-color 0.3s ease, box-shadow 0.3s ease';
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.transform  = '';
-        card.style.transition = 'transform 0.55s var(--ease), border-color 0.3s ease, box-shadow 0.3s ease';
-    });
-});

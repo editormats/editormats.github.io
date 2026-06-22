@@ -43,7 +43,14 @@ body {
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
+    overflow-wrap: break-word; /* long words/emails never force horizontal scroll */
     -webkit-font-smoothing: antialiased;
+}
+
+/* Media never overflows its container on any screen */
+img, video, svg, canvas {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Global ambient glow orbs */
@@ -217,6 +224,7 @@ a { color: inherit; }
 /* ── Hero ────────────────────────────────────────────── */
 #hero {
     min-height: 100vh;
+    min-height: 100svh; /* avoids mobile address-bar jump */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1005,13 +1013,17 @@ footer .container {
 }
 
 @media (max-width: 374px) {
+    .container { padding: 0 1rem; }
+    #hero { padding-left: 1rem; padding-right: 1rem; }
+    /* Scale the 325px-locked TikTok embed down to fit ~320px screens */
     .tiktok-container {
         transform-origin: top left;
-        transform: scale(0.92);
-        width: calc(100% / 0.92);
+        transform: scale(0.86);
+        width: calc(100% / 0.86);
         overflow: visible;
     }
     .hero-embed, .work-featured, .work-card { overflow: hidden; }
+    .hero-wordmark { font-size: 2.7rem; }
 }
 
 /* ── Discipline Groups ───────────────────────────────── */
@@ -1191,4 +1203,30 @@ footer .container {
     .email-cta-arrow { display: none; }
     .email-cta-address { font-size: 0.9rem; }
     .contact-form { padding: 1.5rem; }
+}
+
+/* ── No-JS fallback: never leave reveal content hidden ── */
+@media (scripting: none) {
+    .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+    .hc { opacity: 1 !important; transform: none !important; }
+}
+
+/* ── Reduced motion (accessibility / low-power devices) ─ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+    .hc { opacity: 1 !important; transform: none !important; }
+    .hero-tag, .hero-tagline, .hero-affiliation, .hero-ctas,
+    .hero-embed, .hero-scroll-hint { opacity: 1 !important; animation: none !important; }
+}
+
+/* ── Landscape phones: don't force full-height hero ───── */
+@media (max-height: 480px) and (orientation: landscape) {
+    #hero { min-height: auto; padding-top: 6rem; padding-bottom: 3rem; }
+    .hero-scroll-hint { display: none; }
 }
